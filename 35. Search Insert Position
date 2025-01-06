@@ -1,0 +1,22 @@
+class Solution {
+    public static int helper(int[]nums, int first,int last,int target){
+        if (first >= last) { 
+            if (target <= nums[first]) { 
+                return first; 
+            } else { 
+                return last + 1; 
+            }
+        }
+        int mid = first + (last - first) / 2;
+        if (target > nums[mid]) {
+            return helper(nums, mid + 1, last, target); 
+        } else if (target < nums[mid]) {
+            return helper(nums, first, mid, target);
+        } else {
+            return mid; 
+        }
+    }
+    public int searchInsert(int[] nums, int target) {
+        return helper(nums,0,nums.length-1,target);
+    }
+}
